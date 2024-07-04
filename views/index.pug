@@ -1,0 +1,80 @@
+doctype html
+html
+    head
+        title Student Form
+
+    body
+        button add 
+        form#student(action="/form/submit" method="POST" )
+            label(for="firstName") First Name
+            input(type="text" name="firstName" required)
+            br
+            label(for="lastName") Last Name
+            input(type="text" name="lastName" required)
+            br
+            label(for="address") Address
+            input(type="text" name="address" required)
+            br
+            label(for="qualification") Qualification
+            select(name="qualification" required)
+                option(value="12th") 12th
+                option(value="diploma") Diploma
+            br
+            label(for="degree") Degree
+            select(name="degree" required)
+                option(value="BE") BE 
+                option(value="BTech") BTech
+                option(value="BSc") BSc
+            br
+            label(for="department") Department
+            select(name="department" required)
+                option(value="EEE") EEE
+                option(value="CSE") CSE
+                option(value="ECE") ECE
+                option(value="Mech") Mech
+            br
+            label(for="dob") Date of Birth
+            input(type="date" name="dob" required)
+            br
+            label(for="age") Age
+            input(type="number" name="age" required)
+            br
+            label(for="rollNumber") Roll Number
+            input(type="text" name="rollNumber" required)
+            br
+            label(for="mobileNumber") Mobile Number
+            input(type="number" name="mobileNumber" required)
+            br
+            button(type="submit") Submit
+        table
+            thead
+                tr 
+                    th ID
+                    th First Name
+                    th Last Name
+                    th Address
+                    th Qualification
+                    th Degree
+                    th Department
+                    th Date of Birth
+                    th Age
+                    th Roll Number
+                    th Mobile Number
+            tbody
+                if students && students.length
+                    each student in students
+                        tr
+                            td= student.id
+                            td= student.firstName
+                            td= student.lastName
+                            td= student.address
+                            td= student.qualification
+                            td= student.degree
+                            td= student.department
+                            td= student.dob
+                            td= student.age
+                            td= student.rollNumber
+                            td= student.mobileNumber
+                else
+                    tr
+                        td(colspan="11") No students found

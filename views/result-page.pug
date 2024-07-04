@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title Result Page
+  body
+    form(action="/form/FetchResult" method="get")
+      label(for="dob") Date of Birth:
+      input(type="date" id="dob" name="dob" required)
+      br
+      label(for="rollNumber") Roll Number:
+      input(type="text" id="rollNumber" name="rollNumber" required)
+      br
+      button(type="submit") Submit
+
+   
+    if student
+      p ID: #{student.id}
+      p First Name: #{student.firstName}
+      p Last Name: #{student.lastName}
+      p Address: #{student.address}
+      p Qualification: #{student.qualification}
+      p Degree: #{student.degree}
+      p Department: #{student.department}
+      p Date of Birth: #{student.dob}
+      p Age: #{student.age}
+      p Roll Number: #{student.rollNumber}
+      p Mobile Number: #{student.mobileNumber}
+    else
+      p No student found
