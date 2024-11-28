@@ -1,52 +1,32 @@
+const Role = require("./roleModal"); // Import Role model
+
 const Sequelize = require("sequelize");
 const db = require("../config/db");
-const student = db.define("student", {
-  id:{
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
+
+const User = db.define(
+  "User",
+  {
+    username: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
+    },
+
+    email: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   },
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: false, 
-  },
-  address: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  qualification: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  degree: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  department: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
- dob: {
-    type: Sequelize.DATEONLY,
-    allowNull: false,
-  },
-  age: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  rollNumber: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  mobileNumber: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-});
-db.sync({ force: false });
-module.exports = student;
+  {
+    timestamps: true,
+  }
+);
+
+User.belongsTo(Role, { foreignKey: "roleId" });
+
+module.exports = User;
