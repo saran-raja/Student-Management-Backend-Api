@@ -18,4 +18,13 @@ app.use("/form", router);
 app.listen(port, () => {
   console.log("port runnning on", port);
 });
- 
+sequelize.sync({ force: false })  
+.then(() => {
+  console.log("Database synced");
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+})
+.catch((error) => {
+  console.error("Failed to sync database:", error);
+});
