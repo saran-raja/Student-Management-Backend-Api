@@ -70,4 +70,21 @@ const getRoles = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch roles", details: error });
   }
 };
-module.exports = { login, register, getRoles };
+const createRole = async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    const existingRole = await Role.findOne({ where: { name } });
+    if (existingRole) {
+      return res.status(400).json({ message: "Role already exists" });
+    }
+
+    const role = await Role.create({ name });
+    res.status(201).json({ message: "Role created successfully", role });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create role", details: error });
+  }
+};
+
+
+module.exports = { login, register, getRoles,createRole };

@@ -6,6 +6,7 @@ const authController = require("../controller/authController");
 const verifyToken = require("../controller/verifyToken");
 router.post("/register", authController.register);
 router.get("/role", authController.getRoles);
+router.post("/roles", authController.createRole);
 router.post("/login", authController.login);
 router.use(verifyToken);
 router.get("/getAll", usercontroller.getAll);
